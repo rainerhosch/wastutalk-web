@@ -18,13 +18,34 @@ class Event_model extends CI_Model
         if($data != null){
             $this->db->where($data);
         }
+        $this->db->order_by('sesi_date', 'desc');
         // if limit and start provided
         if ($limit != "") {
             $this->db->limit($limit, $start);
         } else if ($start != "") {
             $this->db->limit($limit, $start);
         }
-        $this->db->order_by('sesi_date');
         return $this->db->get();
+    }
+    public function addEvent($data)
+    {
+        $this->db->insert('events', $data);
+        return $this->db->affected_rows();
+    }
+    public function updateEvent($data, $id)
+    {
+        $this->db->where('id', $id);
+        $this->db->update('events', $data);
+        return $this->db->affected_rows();
+    }
+    public function getEventById($id)
+    {
+        $this->db->where('id', $id);
+        return $this->db->get('events');
+    }
+    public function deleteEvent($id)
+    {
+        $this->db->where('id', $id);
+        $this->db->delete('events');
     }
 }

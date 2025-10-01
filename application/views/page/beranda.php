@@ -60,8 +60,9 @@
 						<div class="col">
 							<div class="card post-card h-100">
 								<?php
-								$today = date('Y-m-d');
-								$event_date = date('Y-m-d', strtotime($post->sesi_date));
+								$today = date('Y-m-d HH:mm:ss');
+								$event_date = date('Y-m-d HH:mm:ss', strtotime($post->sesi_date .' '. $post->end_time));
+
 								if ($event_date < $today) {
 									// Sudah dilaksanakan
 									echo '<div class="ribbon">Sudah Dilaksanakan</div>';
@@ -73,7 +74,7 @@
 									echo '<div class="ribbon soon">Segera Hadir</div>';
 								}
 								?>
-								<img src="<?php echo base_url('assets/images/' . $post->event_image); ?>" class="card-img-top"
+								<img src="<?php echo base_url('assets/uploads/event/'.date('Y') . '/' . $post->event_image); ?>" class="card-img-top"
 									alt="<?php echo $post->title; ?>">
 
 								<div class="card-body">

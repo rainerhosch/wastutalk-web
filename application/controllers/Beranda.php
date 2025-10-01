@@ -20,12 +20,8 @@ class Beranda extends CI_Controller {
         $data['title'] = 'WastuTalk';
         $data['page'] = 'Beranda';
         $data['content'] = 'page/beranda';
-		$offset = $this->event->getEvent()->num_rows();
-        // var_dump($offset);
         $limit = 3;
-        // die;
-        $offset = ($offset - $limit);
-		$data['event_latest'] = $this->event->getEvent(null, $limit, $offset)->result();
+		$data['event_latest'] = $this->event->getEvent(null, $limit, "")->result();
 		$this->load->view('layout', $data);
 	}
 }

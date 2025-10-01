@@ -3,7 +3,7 @@
         <div class="row gy-4">
             <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
                 <h5>Wastutalk STT Wastukancana</h5>
-                <p class="pe-4">Event Sharing Sekolah Tinggi Teknologi Wastukancana Purwakarta.</p>
+                <p class="pe-4">Platform Sharing Sekolah Tinggi Teknologi Wastukancana Purwakarta.</p>
                 <div class="social-links mt-3">
                     <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
                     <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
@@ -18,7 +18,7 @@
                     <li><a href="<?php echo site_url(); ?>">Beranda</a></li>
                     <!-- <li><a href="<?php echo site_url('pengumuman/' . date('Y')); ?>">Pengumuman</a></li> -->
                     <li><a href="<?php echo site_url('arsip/' . date('Y')); ?>">Arsip</a></li>
-                    <li><a href="<?php echo site_url('panduan/panduan-pembicara'); ?>">Panduan</a></li>
+                    <li><a href="<?php echo site_url('panduan/'); ?>">Panduan</a></li>
                 </ul>
             </div>
 
