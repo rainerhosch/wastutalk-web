@@ -114,7 +114,7 @@
             <button type="submit">Login</button>
         </form>
         <!-- Register Form -->
-        <form id="register-form" method="post" action="<?= base_url('auth/register'); ?>" autocomplete="off" style="display: none;">
+        <!-- <form id="register-form" method="post" action="#" autocomplete="off" style="display: none;">
             <input type="text" name="nama" placeholder="Nama" required>
             <input type="email" name="email" placeholder="Email" required>
             <input type="password" name="password1" placeholder="Password" required>
@@ -124,7 +124,7 @@
         <div>
             <span class="toggle-link" id="to-register">Belum punya akun? Register</span>
             <span class="toggle-link" id="to-login" style="display:none;">Sudah punya akun? Login</span>
-        </div>
+        </div> -->
     </div>
     <script>
         const loginForm = document.getElementById('login-form');
