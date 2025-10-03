@@ -176,14 +176,31 @@
             <ul class="nav sidebar-menu flex-column" data-lte-toggle="treeview" role="navigation"
                 aria-label="Main navigation" data-accordion="false" id="navigation">
                 <?php
-                $where = [
-                    'm.is_active' => 1
-                ];
-                $this->db->select('m.id_menu, m.nama_menu, m.link_menu, m.type, m.icon, m.is_active');
-                $this->db->from('sys_menu m');
-                $this->db->where($where);
-                $this->db->order_by('m.nama_menu', 'asc');
-                $menu = $this->db->get()->result_array();
+                if ($this->session->userdata('role') == 1) {
+                    $where = [
+                        'm.is_active' => 1
+                    ];
+                    // $this->db->distinct();
+                    $this->db->select('m.id_menu, m.nama_menu, m.link_menu, m.type, m.icon, m.is_active');
+                    $this->db->from('sys_menu m');
+                    $this->db->where($where);
+                    $this->db->order_by('m.urutan_menu', 'asc');
+                    // $this->db->order_by('m.id_menu', 'asc');
+                    $menu = $this->db->get()->result_array();
+                } else {
+                    $where = [
+                        'uam.role_id' => $this->session->userdata('role'),
+                        'm.is_active' => 1
+                    ];
+                    // $this->db->distinct();
+                    $this->db->select('m.id_menu, m.nama_menu, m.link_menu, m.type, m.icon, m.is_active');
+                    $this->db->from('sys_menu m');
+                    $this->db->join('sys_user_access_menu uam', 'm.id_menu=uam.menu_id');
+                    $this->db->where($where);
+                    // $this->db->order_by('m.id_menu', 'asc');
+                    $this->db->order_by('m.type', 'desc');
+                    $menu = $this->db->get()->result_array();
+                }
 
                 
                 foreach ($menu as $mn):
