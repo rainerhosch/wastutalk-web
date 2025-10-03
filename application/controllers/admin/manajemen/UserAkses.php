@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 /**
- *  File Name             : UserAccesMenu.php
+ *  File Name             : UserAkses.php
  *  File Type             : Controller
  *  File Package          : CI_Controller
  ** * * * * * * * * * * * * * * * * * **
@@ -9,7 +9,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
  *  Date Created          : 01/10/2025
  *  Quots of the code     : 'Hanya seorang yang hobi berbicara dengan komputer.'
  */
-class UserAccesMenu extends CI_Controller
+class UserAkses extends CI_Controller
 {
     public function __construct()
     {

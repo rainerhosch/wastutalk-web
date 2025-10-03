@@ -92,7 +92,7 @@ class Auth extends CI_Controller
                         'google_id' => $google_id,
                         'name' => $name,
                         'email' => $email,
-                        'role' => 3,
+                        'role' => 4,
                         'profile_picture_url' => $profile_picture,
                         'created_at' => date('Y-m-d H:i:s')
                     );
@@ -107,7 +107,7 @@ class Auth extends CI_Controller
                 );
                 $this->session->set_userdata('user_data', $session_data);
 
-                redirect('dashboard'); // Redirect ke halaman dashboard
+                redirect('user/dashboard'); // Redirect ke halaman dashboard
             }
         }
     }
