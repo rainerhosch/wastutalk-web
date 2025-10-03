@@ -85,17 +85,17 @@ class Auth extends CI_Controller
 
                 $google_id = $user_info->id;
                 $name = $user_info->name;
-                $email = $user_info->email;
+                $google_id = $user_info->email;
                 $profile_picture = $user_info->picture;
-
-                $user = $this->user->get_user_by_google_id($google_id)->row_array;
+        
+                $user = $this->db->get_where('sys_users', ['google_id' => $google_id])->row_array();
 
                 if (!$user) {
                     // Registrasi pengguna baru
                     $data = array(
                         'google_id' => $google_id,
                         'name' => $name,
-                        'email' => $email,
+                        'email' => $google_id,
                         'role' => 7,
                         'profile_picture_url' => $profile_picture,
                         'created_at' => date('Y-m-d H:i:s')
