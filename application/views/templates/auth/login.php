@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,9 +16,10 @@
             align-items: center;
             justify-content: center;
         }
+
         .auth-container {
-            background: rgba(255,255,255,0.13);
-            box-shadow: 0 8px 32px 0 rgba(31,38,135,0.37);
+            background: rgba(255, 255, 255, 0.13);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
             border-radius: 20px;
             padding: 40px 30px 30px 30px;
             width: 350px;
@@ -25,31 +27,36 @@
             text-align: center;
             backdrop-filter: blur(6px);
         }
+
         .auth-container h2 {
             margin-bottom: 20px;
             color: #fff;
             font-weight: 700;
             letter-spacing: 1px;
         }
+
         .auth-container form {
             display: flex;
             flex-direction: column;
             gap: 15px;
         }
+
         .auth-container input[type="text"],
         .auth-container input[type="password"],
         .auth-container input[type="email"] {
             padding: 12px 15px;
             border: none;
             border-radius: 8px;
-            background: rgba(255,255,255,0.85);
+            background: rgba(255, 255, 255, 0.85);
             font-size: 1rem;
             outline: none;
             transition: box-shadow 0.2s;
         }
+
         .auth-container input:focus {
             box-shadow: 0 0 0 2px #764ba2;
         }
+
         .auth-container button {
             padding: 12px;
             border: none;
@@ -61,9 +68,11 @@
             cursor: pointer;
             transition: background 0.2s;
         }
+
         .auth-container button:hover {
             background: linear-gradient(90deg, #764ba2 0%, #667eea 100%);
         }
+
         .toggle-link {
             color: #fff;
             font-size: 0.95rem;
@@ -72,27 +81,33 @@
             text-decoration: underline;
             transition: color 0.2s;
         }
+
         .toggle-link:hover {
             color: #ffd700;
         }
+
         .logo {
             width: 60px;
             margin-bottom: 10px;
         }
+
         .alert {
             margin-bottom: 10px;
             padding: 10px 15px;
             border-radius: 6px;
             font-size: 0.95rem;
         }
+
         .alert-danger {
             background: #ff4d4f;
             color: #fff;
         }
+
         .alert-info {
             background: #4da6ff;
             color: #fff;
         }
+
         @media (max-width: 400px) {
             .auth-container {
                 padding: 25px 8px 20px 8px;
@@ -100,6 +115,7 @@
         }
     </style>
 </head>
+
 <body>
     <div class="auth-container">
         <img src="<?= base_url('assets/logo.png') ?>" alt="Logo" class="logo">
@@ -113,6 +129,14 @@
             <input type="password" name="password" placeholder="Password" required>
             <button type="submit">Login</button>
         </form>
+        <div style="margin: 18px 0 0 0; text-align: center;">
+            <a href="<?= isset($login_button) ? $login_button = $login_button : base_url('auth/register_google'); ?>"
+                style="display: inline-block; background: #fff; color: #444; border-radius: 4px; padding: 8px 18px; font-weight: 500; box-shadow: 0 2px 8px rgba(0,0,0,0.07); text-decoration: none; transition: background 0.2s;">
+                <img src="https://developers.google.com/identity/images/g-logo.png" alt="Google"
+                    style="width:20px; vertical-align:middle; margin-right:8px;">
+                Login dengan Google
+            </a>
+        </div>
         <!-- Register Form -->
         <!-- <form id="register-form" method="post" action="#" autocomplete="off" style="display: none;">
             <input type="text" name="nama" placeholder="Nama" required>
@@ -133,14 +157,14 @@
         const toLogin = document.getElementById('to-login');
         const formTitle = document.getElementById('form-title');
 
-        toRegister.onclick = function() {
+        toRegister.onclick = function () {
             loginForm.style.display = 'none';
             registerForm.style.display = 'flex';
             toRegister.style.display = 'none';
             toLogin.style.display = 'inline';
             formTitle.textContent = 'Register';
         };
-        toLogin.onclick = function() {
+        toLogin.onclick = function () {
             loginForm.style.display = 'flex';
             registerForm.style.display = 'none';
             toRegister.style.display = 'inline';
@@ -149,4 +173,5 @@
         };
     </script>
 </body>
+
 </html>
