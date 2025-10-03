@@ -21,6 +21,7 @@ class Beranda extends CI_Controller {
         $data['page'] = 'Beranda';
         $data['content'] = 'page/beranda';
         $limit = 3;
+        
 		$data['event_latest'] = $this->event->getEvent(null, $limit, "")->result();
 		$this->load->view('layout', $data);
 	}

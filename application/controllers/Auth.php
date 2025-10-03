@@ -50,7 +50,7 @@ class Auth extends CI_Controller
             // code here...
             if (md5($password) == $user['password_hash']) {
                 $data = [
-                    // 'id_user' => $user['id'],
+                    'user_id' => $user['id'],
                     'nama' => $user['name'],
                     'email' => $user['email'],
                     'role' => $user['role'],
@@ -106,6 +106,7 @@ class Auth extends CI_Controller
 
                 // Buat sesi pengguna
                 $session_data = array(
+                    'user_id' => $user->id,
                     'nama' => $user->name,
                     'email' => $user->email,
                     'role' => $user->role,

@@ -221,7 +221,8 @@
                         $event_date_only = date('Y-m-d', strtotime($event_latest->sesi_date));
 
                         if ($event_date_only >= $today_date_only) {
-                            echo '<a target="_blank" href="' . $event_latest->presensi_uri . '" class="btn-register">Daftar Sekarang</a>';
+                            echo '<a target="_blank" href="' . $regist_button . '" class="btn-register">Daftar Sekarang</a>';
+                            // echo '<a target="_blank" href="' . $event_latest->presensi_uri . '" class="btn-register">Daftar Sekarang</a>';
                             // echo '<a href="#" class="btn-register" data-bs-toggle="modal" data-bs-target="#registerEventModal">Daftar Sekarang</a>';
                         }
                         ?>
@@ -283,6 +284,7 @@
             // Ganti tombol "Daftar Sekarang" agar membuka modal
             var registerBtn = document.querySelector('#btn-register');
             if (registerBtn) {
+                
                 registerBtn.setAttribute('type', 'button');
                 registerBtn.setAttribute('data-bs-toggle', 'modal');
                 registerBtn.setAttribute('data-bs-target', '#registerEventModal');
