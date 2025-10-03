@@ -92,7 +92,7 @@ class Auth extends CI_Controller
 
                 if (!$user) {
                     // Registrasi pengguna baru
-                    $data = array(
+                    $session_data = array(
                         'google_id' => $google_id,
                         'name' => $name,
                         'email' => $email,
@@ -100,7 +100,7 @@ class Auth extends CI_Controller
                         'profile_picture_url' => $profile_picture,
                         'created_at' => date('Y-m-d H:i:s')
                     );
-                    $this->user->insert_data('sys_users', $data);
+                    $this->user->insert_data('sys_users', $session_data);
                 }
 
                 // Buat sesi pengguna
@@ -109,7 +109,7 @@ class Auth extends CI_Controller
                     'email' => $user['email'],
                     'role' => $user['role']
                 );
-                $this->session->set_userdata($data);
+                $this->session->set_userdata($session_data);
 
                 redirect('user/dashboard'); // Redirect ke halaman dashboard
             }
