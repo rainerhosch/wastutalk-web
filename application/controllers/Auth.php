@@ -105,9 +105,9 @@ class Auth extends CI_Controller
 
                 // Buat sesi pengguna
                 $session_data = array(
-                    'google_id' => $google_id,
-                    'name' => $name,
-                    'email' => $email
+                    'nama' => $user['name'],
+                    'email' => $user['email'],
+                    'role' => $user['role']
                 );
                 $this->session->set_userdata('user_data', $session_data);
 
