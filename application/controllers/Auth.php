@@ -92,7 +92,7 @@ class Auth extends CI_Controller
                         'google_id' => $google_id,
                         'name' => $name,
                         'email' => $email,
-                        'role' => 4,
+                        'role' => 7,
                         'profile_picture_url' => $profile_picture,
                         'created_at' => date('Y-m-d H:i:s')
                     );
