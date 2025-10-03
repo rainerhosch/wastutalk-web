@@ -496,7 +496,7 @@
     $(document).ready(function () {
         $.ajax({
             type: "POST",
-            url: 'UserAkses/data_user_access_menu',
+            url: 'User_akses/data_user_access_menu',
             dataType: "json",
             success: function (response) {
                 console.log(response)
@@ -550,7 +550,7 @@
                     console.log(role_id)
                     $.ajax({
                         type: "POST",
-                        url: "UserAkses/get_menu_access",
+                        url: "User_akses/get_menu_access",
                         data: {
                             role_id: role_id,
                         },
@@ -590,7 +590,7 @@
                     let form = $(this);
                     $.ajax({
                         type: "POST",
-                        url: "UserAkses/simpan_menu_access",
+                        url: "User_akses/simpan_menu_access",
                         data: form.serializeArray(),
                         dataType: "json",
                         success: function (response) {
@@ -623,7 +623,7 @@
                     let form = $(this);
                     $.ajax({
                         type: "POST",
-                        url: "UserAkses/simpan_role_baru",
+                        url: "User_akses/simpan_role_baru",
                         data: form.serializeArray(),
                         dataType: "json",
                         success: function (response) {
@@ -667,7 +667,7 @@
                         if (result.isConfirmed) {
                             $.ajax({
                                 type: "POST",
-                                url: "UserAkses/delete_role_user", // where you wanna post
+                                url: "User_akses/delete_role_user", // where you wanna post
                                 data: {
                                     id: id
                                 },
@@ -716,7 +716,7 @@
                         if (result.isConfirmed) {
                             $.ajax({
                                 type: "POST",
-                                url: "UserAkses/delete_role_access_menu", // where you wanna post
+                                url: "User_akses/delete_role_access_menu", // where you wanna post
                                 data: {
                                     id: id
                                 },
