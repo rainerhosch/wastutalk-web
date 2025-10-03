@@ -17,14 +17,14 @@
                     $years = date('Y'); 
                     $menu_items = [
                         'event' => 'Events',
-                        'about' => 'About Us',
-                        'contact' => 'Contact Us'
+                        '#about' => 'About Us',
+                        '#contact' => 'Contact Us'
                     ];
                 ?>
 
                 <?php foreach ($menu_items as $slug => $label): ?>
                 <li class="nav-item">
-                    <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a class="nav-link" href="<?php echo site_url($slug); ?>" role="button">
                         <?php echo $label; ?>
                     </a>
                     <!-- <ul class="dropdown-menu">

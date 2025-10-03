@@ -84,7 +84,7 @@
 									</p>
 									<h5 class="card-title" style="font-size:14px;"><?php echo $post->tema_event; ?></h5>
 									<p class="card-text text-muted" style="font-size:12px;"><?= $post->speaker; ?></p>
-									<a href="<?php echo site_url('event/' . $post->id); ?>" class="btn btn-primary">Lihat
+									<a href="<?php echo site_url('event/detail?id=' . $post->id); ?>" class="btn btn-primary">Lihat
 										Selengkapnya</a>
 								</div>
 							</div>
