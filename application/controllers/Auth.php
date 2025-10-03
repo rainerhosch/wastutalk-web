@@ -53,7 +53,8 @@ class Auth extends CI_Controller
                     // 'id_user' => $user['id'],
                     'nama' => $user['name'],
                     'email' => $user['email'],
-                    'role' => $user['role']
+                    'role' => $user['role'],
+                    'pic' => $user['profile_picture_url']
                 ];
                 $this->session->set_userdata($data);
                 if (in_array($user['role'], [1, 2])){
@@ -107,7 +108,8 @@ class Auth extends CI_Controller
                 $session_data = array(
                     'nama' => $user->name,
                     'email' => $user->email,
-                    'role' => $user->role
+                    'role' => $user->role,
+                    'pic' => $user->profile_picture_url
                 );
                 $this->session->set_userdata($session_data);
 
