@@ -84,18 +84,18 @@ class Auth extends CI_Controller
                 $user_info = $google_service->userinfo->get();
 
                 $google_id = $user_info->id;
-                $name = $user_info->name;
-                $google_id = $user_info->email;
+                $user = $user_info->name;
+                $email = $user_info->email;
                 $profile_picture = $user_info->picture;
-        
-                $user = $this->db->get_where('sys_users', ['google_id' => $google_id])->row_array();
+
+                $user = $this->user->get_user_by_google_id($google_id);
 
                 if (!$user) {
                     // Registrasi pengguna baru
                     $data = array(
                         'google_id' => $google_id,
-                        'name' => $name,
-                        'email' => $google_id,
+                        'name' => $user,
+                        'email' => $email,
                         'role' => 7,
                         'profile_picture_url' => $profile_picture,
                         'created_at' => date('Y-m-d H:i:s')
@@ -105,9 +105,9 @@ class Auth extends CI_Controller
 
                 // Buat sesi pengguna
                 $session_data = array(
-                    'nama' => $user['name'],
-                    'email' => $user['email'],
-                    'role' => $user['role']
+                    'nama' => $user->name,
+                    'email' => $user->email,
+                    'role' => $user->role
                 );
                 $this->session->set_userdata($session_data);
 

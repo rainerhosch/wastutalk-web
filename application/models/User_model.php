@@ -30,7 +30,8 @@ class User_model extends CI_Model
     public function get_user_by_google_id($google_id)
     {
         $this->db->where('google_id', $google_id);
-        return $this->db->get('sys_users');
+        $query = $this->db->get('users');
+        return $query->row();
     }
 
     public function get_role_user($where = null)
