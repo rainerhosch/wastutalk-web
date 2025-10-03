@@ -28,7 +28,7 @@
         overflow: hidden;
     }
 
-    @media (min-width: 768px) {
+    /* @media (min-width: 768px) {
         .event-detail-container {
             flex-direction: row;
         }
@@ -45,6 +45,31 @@
         height: 100%;
         object-fit: cover;
         display: block;
+    } */
+
+    @media (min-width: 768px) {
+        .event-detail-container {
+            /* Hapus flex-direction: row; */
+            flex-direction: column;
+        }
+    }
+
+    .event-image-section {
+        width: 100%;
+        /* Gambar akan membentang di seluruh lebar */
+        height: 400px;
+        /* Atur tinggi tetap atau sesuaikan dengan viewport */
+        overflow: hidden;
+        position: relative;
+        /* Tambahkan aspek rasio untuk konsistensi */
+        aspect-ratio: 16 / 9;
+    }
+
+    .event-image-section img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        /* Tetap gunakan cover untuk mengisi ruang */
     }
 
     .event-status {
@@ -196,7 +221,7 @@
                         $event_date_only = date('Y-m-d', strtotime($event_latest->sesi_date));
 
                         if ($event_date_only >= $today_date_only) {
-                            echo '<a target="_blank" href="'.$event_latest->presensi_uri.'" class="btn-register">Daftar Sekarang</a>';
+                            echo '<a target="_blank" href="' . $event_latest->presensi_uri . '" class="btn-register">Daftar Sekarang</a>';
                             // echo '<a href="#" class="btn-register" data-bs-toggle="modal" data-bs-target="#registerEventModal">Daftar Sekarang</a>';
                         }
                         ?>
@@ -239,7 +264,8 @@
                             <input type="text" class="form-control" id="instansi" name="instansi">
                         </div>
                         <div class="mb-3">
-                            <label for="instansi" class="form-label">Program Study <span style="font-size: 10px;">(jika ada)</span></label>
+                            <label for="instansi" class="form-label">Program Study <span style="font-size: 10px;">(jika
+                                    ada)</span></label>
                             <input type="text" class="form-control" id="instansi" name="instansi">
                         </div>
                     </div>
