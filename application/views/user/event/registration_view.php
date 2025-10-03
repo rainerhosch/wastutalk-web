@@ -65,7 +65,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="participant_name" class="form-label">Nama Lengkap <span style="font-size: 10px; color: red;">*(nama digunakan untuk sertifikat)</span></label>
-                        <input type="text" class="form-control" id="participant_name" name="participant_name" value="<?= $user[0]->name;?>">
+                        <input type="text" class="form-control" id="participant_name" name="participant_name" value="<?= $user[0]->name;?>" required>
                     </div>
                     <div class="mb-3">
                         <label for="participant_email" class="form-label">Email</label>
