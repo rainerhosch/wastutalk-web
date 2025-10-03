@@ -109,7 +109,7 @@ class Auth extends CI_Controller
                     'email' => $user['email'],
                     'role' => $user['role']
                 );
-                $this->session->set_userdata('user_data', $session_data);
+                $this->session->set_userdata($data);
 
                 redirect('user/dashboard'); // Redirect ke halaman dashboard
             }
