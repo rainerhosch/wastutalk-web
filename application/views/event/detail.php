@@ -185,6 +185,11 @@
     <div class="container">
         <!-- Hero Section -->
         <?php if (!empty($event_latest)): ?>
+            <?php if ($this->session->flashdata('alert')): ?>
+                <div class="mt-3 alert_event">
+                    <?= $this->session->flashdata('alert'); ?>
+                </div>
+            <?php endif; ?>
             <div class="event-detail-container">
 
                 <div class="event-image-section">
@@ -281,6 +286,12 @@
     </div>
 
     <script>
+        setTimeout(function() {
+            var alertEvent = document.querySelector('.alert_event');
+            if (alertEvent) {
+                alertEvent.style.display = 'none';
+            }
+        }, 1000);
         document.addEventListener('DOMContentLoaded', function () {
             // Ganti tombol "Daftar Sekarang" agar membuka modal
             var registerBtn = document.querySelector('#btn-register');

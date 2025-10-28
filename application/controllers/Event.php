@@ -47,19 +47,19 @@ class Event extends CI_Controller
         $datetime_now = date('Y-m-d H:m:s');
         $id = $this->input->get('id');
         $event_latest = $this->event->getEventById($id)->row();
-        // redirect($event_latest->presensi_uri);
         $event_start = $event_latest->sesi_date . ' ' . $event_latest->start_time;
         $event_end = $event_latest->sesi_date . ' ' . $event_latest->end_time;
 
         if ($datetime_now > $event_end) {
-            echo 'Event sudah selesai';
-            return;
+            $this->session->set_flashdata('alert', '<div class="alert alert-danger text-center">Event sudah selesai</div>');
+            redirect('event/detail?id=' . $id);
         } elseif ($datetime_now < $event_start) {
-            echo 'Event belum dimulai';
-            return;
+            $this->session->set_flashdata('alert', '<div class="alert alert-warning text-center">Event belum dimulai</div>');
+            redirect('event/detail?id=' . $id);
         }else{
-            echo 'Event sedang berlangsung';
-            return;
+            redirect($event_latest->presensi_uri);
+            // echo 'Event sedang berlangsung';
+            // return;
             
         }
         echo '<pre>';
