@@ -42,6 +42,33 @@ class Event extends CI_Controller
         $this->load->view('layout', $data);
     }
 
+    public function presensi()
+    {
+        $datetime_now = date('Y-m-d H:m:s');
+        $id = $this->input->get('id');
+        $event_latest = $this->event->getEventById($id)->row();
+        // redirect($event_latest->presensi_uri);
+        $event_start = $event_latest->sesi_date . ' ' . $event_latest->start_time;
+        $event_end = $event_latest->sesi_date . ' ' . $event_latest->end_time;
+
+        if ($datetime_now > $event_end) {
+            echo 'Event sudah selesai';
+            return;
+        } elseif ($datetime_now < $event_start) {
+            echo 'Event belum dimulai';
+            return;
+        }else{
+            echo 'Event sedang berlangsung';
+            return;
+            
+        }
+        echo '<pre>';
+        // var_dump($datetime_now);
+        var_dump($event_latest);
+        echo '</pre>';
+        die;
+    }
+
     public function register()
     {
         if (isset($_GET['code'])) {
