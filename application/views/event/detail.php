@@ -226,6 +226,8 @@
                             document.addEventListener("DOMContentLoaded", function () {
                                 // Data dari PHP
                                 const eventUri = <?= json_encode($event_latest->event_uri); ?>;
+                                const presensiUri = "<?= site_url('event/presensi?id=' . $event_latest->id); ?>";
+                                const berandaUri = "<?= site_url('beranda'); ?>";
 
                                 // Tanggal event
                                 const eventDate = "<?= date('Y-m-d', strtotime($event_latest->sesi_date)); ?>";
@@ -250,6 +252,8 @@
                                 btn.style.minWidth = "200px";
                                 btn.style.textAlign = "center";
 
+                                let btnBack = document.querySelector('.btn-back');
+
                                 function updateEventTimeStatus() {
                                     const now = new Date();
                                     if (now < eventStartDateTime) {
@@ -258,18 +262,33 @@
                                         btn.removeAttribute('href');
                                         btn.removeAttribute('target');
                                         btn.style.pointerEvents = 'none'; // prevent click
+
+                                        if (btnBack) {
+                                            btnBack.textContent = "Kembali ke Beranda";
+                                            btnBack.setAttribute('href', berandaUri);
+                                        }
                                     } else if (now > eventEndDateTime) {
                                         btn.textContent = "Event sudah selesai";
                                         btn.className = "btn btn-danger btn-register disabled";
                                         btn.removeAttribute('href');
                                         btn.removeAttribute('target');
                                         btn.style.pointerEvents = 'none';
+
+                                        if (btnBack) {
+                                            btnBack.textContent = "Kembali ke Beranda";
+                                            btnBack.setAttribute('href', berandaUri);
+                                        }
                                     } else {
                                         btn.textContent = "Join Event";
                                         btn.className = "btn btn-primary btn-register";
                                         btn.setAttribute('href', eventUri);
                                         btn.setAttribute('target', '_blank');
                                         btn.style.pointerEvents = ''; // allow click
+
+                                        if (btnBack) {
+                                            btnBack.textContent = "Isi Daftar Hadir";
+                                            btnBack.setAttribute('href', presensiUri);
+                                        }
                                     }
                                 }
 
@@ -285,12 +304,8 @@
                         $today_date_only = date('Y-m-d');
                         $event_date_only = date('Y-m-d', strtotime($event_latest->sesi_date));
 
-
                         if ($event_date_only >= $today_date_only) {
                             // echo '<a target="_blank" href="' . $regist_button . '" class="btn-register">Daftar Sekarang</a>';
-                            // echo '<a target="_blank" href="' . $event_latest->event_uri . '" class="btn-register">Join</a>';
-                            // echo '<a target="_blank" href="' . $event_latest->presensi_uri . '" class="btn-register">Daftar Sekarang</a>';
-                            // echo '<a href="#" class="btn-register" data-bs-toggle="modal" data-bs-target="#registerEventModal">Daftar Sekarang</a>';
                         }
                         ?>
                         <a href="<?= site_url('beranda'); ?>" class="btn-back">Kembali ke Beranda</a>
