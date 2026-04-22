@@ -55,7 +55,7 @@
 									echo '<div class="ribbon soon">Segera Hadir</div>';
 								}
 								?>
-								<img src="<?php echo base_url('assets/uploads/event/'.date('Y') . '/' . $post->event_image); ?>" class="card-img-top"
+								<img src="<?php echo base_url('assets/uploads/event/'.date('Y', strtotime($post->sesi_date)) . '/' . $post->event_image); ?>" class="card-img-top"
 									alt="<?php echo $post->title; ?>">
 
 								<div class="card-body">
