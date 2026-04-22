@@ -222,73 +222,73 @@
 
                     <div class="event-actions">
                         <script>
-                        // Perintah: gunakan <a> dengan dynamic class, href bisa diklik hanya saat berlangsung, dan status dalam button itu sendiri
-                        document.addEventListener("DOMContentLoaded", function() {
-                            // Data dari PHP
-                            const eventUri = <?= json_encode($event_latest->event_uri); ?>;
+                            // Perintah: gunakan <a> dengan dynamic class, href bisa diklik hanya saat berlangsung, dan status dalam button itu sendiri
+                            document.addEventListener("DOMContentLoaded", function () {
+                                // Data dari PHP
+                                const eventUri = <?= json_encode($event_latest->event_uri); ?>;
 
-                            // Tanggal event
-                            const eventDate = "<?= date('Y-m-d', strtotime($event_latest->sesi_date)); ?>";
-                            const eventStart = "<?= date('H:i', strtotime($event_latest->start_time)); ?>";
-                            const eventEnd = "<?= date('H:i', strtotime($event_latest->end_time)); ?>";
-                            const eventStartDateTimeStr = eventDate + 'T' + eventStart + ':00';
-                            const eventEndDateTimeStr = eventDate + 'T' + eventEnd + ':00';
-                            const eventStartDateTime = new Date(eventStartDateTimeStr);
-                            const eventEndDateTime = new Date(eventEndDateTimeStr);
+                                // Tanggal event
+                                const eventDate = "<?= date('Y-m-d', strtotime($event_latest->sesi_date)); ?>";
+                                const eventStart = "<?= date('H:i', strtotime($event_latest->start_time)); ?>";
+                                const eventEnd = "<?= date('H:i', strtotime($event_latest->end_time)); ?>";
+                                const eventStartDateTimeStr = eventDate + 'T' + eventStart + ':00';
+                                const eventEndDateTimeStr = eventDate + 'T' + eventEnd + ':00';
+                                const eventStartDateTime = new Date(eventStartDateTimeStr);
+                                const eventEndDateTime = new Date(eventEndDateTimeStr);
 
-                            // Cari tempat aksi
-                            let actionsDiv = document.querySelector('.event-actions');
+                                // Cari tempat aksi
+                                let actionsDiv = document.querySelector('.event-actions');
 
-                            // Hapus .btn-register (jika ada)
-                            let btns = actionsDiv.querySelectorAll('.btn-register');
-                            btns.forEach(btn => btn.remove());
+                                // Hapus .btn-register (jika ada)
+                                let btns = actionsDiv.querySelectorAll('.btn-register');
+                                btns.forEach(btn => btn.remove());
 
-                            // Buat elemen tombol <a>
-                            let btn = document.createElement('a');
-                            btn.id = 'event-time-status-btn';
-                            btn.style.fontWeight = "bold";
-                            btn.style.minWidth = "200px";
-                            btn.style.textAlign = "center";
+                                // Buat elemen tombol <a>
+                                let btn = document.createElement('a');
+                                btn.id = 'event-time-status-btn';
+                                btn.style.fontWeight = "bold";
+                                btn.style.minWidth = "200px";
+                                btn.style.textAlign = "center";
 
-                            function updateEventTimeStatus() {
-                                const now = new Date();
-                                if (now < eventStartDateTime) {
-                                    btn.textContent = "Event belum dimulai";
-                                    btn.className = "btn btn-warning btn-register disabled";
-                                    btn.removeAttribute('href');
-                                    btn.removeAttribute('target');
-                                    btn.style.pointerEvents = 'none'; // prevent click
-                                } else if (now > eventEndDateTime) {
-                                    btn.textContent = "Event sudah selesai";
-                                    btn.className = "btn btn-danger btn-register disabled";
-                                    btn.removeAttribute('href');
-                                    btn.removeAttribute('target');
-                                    btn.style.pointerEvents = 'none';
-                                } else {
-                                    btn.textContent = "Zoin Event";
-                                    btn.className = "btn btn-primary btn-register";
-                                    btn.setAttribute('href', eventUri);
-                                    btn.setAttribute('target', '_blank');
-                                    btn.style.pointerEvents = ''; // allow click
+                                function updateEventTimeStatus() {
+                                    const now = new Date();
+                                    if (now < eventStartDateTime) {
+                                        btn.textContent = "Event belum dimulai";
+                                        btn.className = "btn btn-warning btn-register disabled";
+                                        btn.removeAttribute('href');
+                                        btn.removeAttribute('target');
+                                        btn.style.pointerEvents = 'none'; // prevent click
+                                    } else if (now > eventEndDateTime) {
+                                        btn.textContent = "Event sudah selesai";
+                                        btn.className = "btn btn-danger btn-register disabled";
+                                        btn.removeAttribute('href');
+                                        btn.removeAttribute('target');
+                                        btn.style.pointerEvents = 'none';
+                                    } else {
+                                        btn.textContent = "Join Event";
+                                        btn.className = "btn btn-primary btn-register";
+                                        btn.setAttribute('href', eventUri);
+                                        btn.setAttribute('target', '_blank');
+                                        btn.style.pointerEvents = ''; // allow click
+                                    }
                                 }
-                            }
 
-                            updateEventTimeStatus();
-                            // sisipkan ke paling atas .event-actions
-                            actionsDiv.insertBefore(btn, actionsDiv.firstChild);
+                                updateEventTimeStatus();
+                                // sisipkan ke paling atas .event-actions
+                                actionsDiv.insertBefore(btn, actionsDiv.firstChild);
 
-                            // Update status setiap detik
-                            setInterval(updateEventTimeStatus, 1000);
-                        });
+                                // Update status setiap detik
+                                setInterval(updateEventTimeStatus, 1000);
+                            });
                         </script>
                         <?php
                         $today_date_only = date('Y-m-d');
                         $event_date_only = date('Y-m-d', strtotime($event_latest->sesi_date));
-                        
+
 
                         if ($event_date_only >= $today_date_only) {
                             // echo '<a target="_blank" href="' . $regist_button . '" class="btn-register">Daftar Sekarang</a>';
-                            // echo '<a target="_blank" href="' . $event_latest->event_uri . '" class="btn-register">Zoin</a>';
+                            // echo '<a target="_blank" href="' . $event_latest->event_uri . '" class="btn-register">Join</a>';
                             // echo '<a target="_blank" href="' . $event_latest->presensi_uri . '" class="btn-register">Daftar Sekarang</a>';
                             // echo '<a href="#" class="btn-register" data-bs-toggle="modal" data-bs-target="#registerEventModal">Daftar Sekarang</a>';
                         }
@@ -347,7 +347,7 @@
     </div>
 
     <script>
-        setTimeout(function() {
+        setTimeout(function () {
             var alertEvent = document.querySelector('.alert_event');
             if (alertEvent) {
                 alertEvent.style.display = 'none';
@@ -357,7 +357,7 @@
             // Ganti tombol "Daftar Sekarang" agar membuka modal
             var registerBtn = document.querySelector('#btn-register');
             if (registerBtn) {
-                
+
                 registerBtn.setAttribute('type', 'button');
                 registerBtn.setAttribute('data-bs-toggle', 'modal');
                 registerBtn.setAttribute('data-bs-target', '#registerEventModal');
