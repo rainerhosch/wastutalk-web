@@ -19,6 +19,7 @@ class Event extends CI_Controller
         $this->load->model('Event_model', 'event');
         $this->load->model('participant_model');
         $this->load->model('User_model', 'user');
+        $this->load->model('Presensi_model', 'presensi_model');
     }
     public function index()
     {
@@ -44,9 +45,14 @@ class Event extends CI_Controller
 
     public function presensi()
     {
-        $datetime_now = date('Y-m-d H:m:s');
+        $datetime_now = date('Y-m-d H:i:s');
         $id = $this->input->get('id');
         $event_latest = $this->event->getEventById($id)->row();
+        
+        if (!$event_latest) {
+            redirect('event');
+        }
+
         $event_start = $event_latest->sesi_date . ' ' . $event_latest->start_time;
         $event_end = $event_latest->sesi_date . ' ' . $event_latest->end_time;
 
@@ -57,16 +63,46 @@ class Event extends CI_Controller
             $this->session->set_flashdata('alert', '<div class="alert alert-warning text-center">Event belum dimulai</div>');
             redirect('event/detail?id=' . $id);
         } else {
-            redirect($event_latest->presensi_uri);
-            // echo 'Event sedang berlangsung';
-            // return;
-
+            // Jika ada external URI dan dipaksa (bisa ditambahkan kondisinya), untuk sekarang langsung pakai form internal
+            $data['title'] = 'WastuTalk Presensi';
+            $data['page'] = 'Presensi Event';
+            $data['content'] = 'event/presensi';
+            $data['event'] = $event_latest;
+            $this->load->view('layout', $data);
         }
-        echo '<pre>';
-        // var_dump($datetime_now);
-        var_dump($event_latest);
-        echo '</pre>';
-        die;
+    }
+
+    public function submit_presensi()
+    {
+        $id_event = $this->input->post('id_event');
+        $kode_participant = $this->input->post('kode_participant');
+        
+        // Cek apakah sudah pernah presensi
+        if ($this->presensi_model->check_already_presensi($id_event, $kode_participant)) {
+            $this->session->set_flashdata('alert', '<div class="alert alert-warning text-center">Anda sudah melakukan presensi untuk event ini.</div>');
+            redirect('event/presensi?id=' . $id_event);
+            return;
+        }
+
+        $data = [
+            'id_event' => $id_event,
+            'kode_participant' => $kode_participant,
+            'nama' => $this->input->post('nama'),
+            'email' => $this->input->post('email'),
+            'no_hp' => $this->input->post('no_hp'),
+            'institusi' => $this->input->post('institusi'),
+            'program_studi' => $this->input->post('program_studi'),
+            'time_stamp' => date('Y-m-d H:i:s')
+        ];
+
+        $insert = $this->presensi_model->insert_presensi($data);
+        if ($insert) {
+            $this->session->set_flashdata('alert', '<div class="alert alert-success text-center">Presensi berhasil disubmit. Terima kasih!</div>');
+            redirect('event/detail?id=' . $id_event);
+        } else {
+            $this->session->set_flashdata('alert', '<div class="alert alert-danger text-center">Terjadi kesalahan, gagal menyimpan data.</div>');
+            redirect('event/presensi?id=' . $id_event);
+        }
     }
 
     public function register()
