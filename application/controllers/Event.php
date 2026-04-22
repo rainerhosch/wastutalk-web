@@ -56,11 +56,11 @@ class Event extends CI_Controller
         } elseif ($datetime_now < $event_start) {
             $this->session->set_flashdata('alert', '<div class="alert alert-warning text-center">Event belum dimulai</div>');
             redirect('event/detail?id=' . $id);
-        }else{
+        } else {
             redirect($event_latest->presensi_uri);
             // echo 'Event sedang berlangsung';
             // return;
-            
+
         }
         echo '<pre>';
         // var_dump($datetime_now);
