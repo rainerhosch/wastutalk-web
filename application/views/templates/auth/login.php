@@ -129,14 +129,14 @@
             <input type="password" name="password" placeholder="Password" required>
             <button type="submit">Login</button>
         </form>
-        <div style="margin: 18px 0 0 0; text-align: center;">
+        <!-- <div style="margin: 18px 0 0 0; text-align: center;">
             <a href="<?= isset($login_button) ? $login_button = $login_button : base_url('auth/register_google'); ?>"
                 style="display: inline-block; background: #fff; color: #444; border-radius: 4px; padding: 8px 18px; font-weight: 500; box-shadow: 0 2px 8px rgba(0,0,0,0.07); text-decoration: none; transition: background 0.2s;">
                 <img src="https://developers.google.com/identity/images/g-logo.png" alt="Google"
                     style="width:20px; vertical-align:middle; margin-right:8px;">
                 Login dengan Google
             </a>
-        </div>
+        </div> -->
         <!-- Register Form -->
         <!-- <form id="register-form" method="post" action="#" autocomplete="off" style="display: none;">
             <input type="text" name="nama" placeholder="Nama" required>

@@ -239,7 +239,6 @@
     }
 </style>
 <!-- Event Management Page -->
-<main class="main-content">
     <div class="container-fluid py-4">
         <div class="row">
             <div class="col-md-12">
@@ -357,23 +356,22 @@
             </div>
         </div>
     </div>
-    </div>
-</main>
 
 <script>
     $(document).ready(function () {
-        // Load data event
-        function loadEventData() {
+        function loadEventData(page = 1) {
             $.ajax({
                 type: "GET",
                 url: "Event/get_event_list",
+                data: { page: page },
                 dataType: "json",
                 success: function (response) {
                     let html = '';
                     if (response.status && response.data.event_list.length > 0) {
+                        let offset = response.data.offset;
                         $.each(response.data.event_list, function (i, event) {
                             html += `<tr>
-                            <td class="text-center">${i + 1}</td>
+                            <td class="text-center">${offset + i + 1}</td>
                             <td class="text-center">${event.title}</td>
                             <td class="text-center">${event.sesi_date}</td>
                             <td class="text-center" style="font-size: 14px;">
@@ -387,13 +385,52 @@
                             </td>
                         </tr>`;
                         });
+                        renderPagination(response.data.current_page, response.data.total_pages);
                     } else {
-                        html = `<tr><td colspan="6" class="text-center">Belum ada data event.</td></tr>`;
+                        html = `<tr><td colspan="7" class="text-center">Belum ada data event.</td></tr>`;
+                        $('.custom-pagination ul').html('');
                     }
                     $('#event_tbody').html(html);
                 }
             });
         }
+
+        function renderPagination(currentPage, totalPages) {
+            currentPage = parseInt(currentPage);
+            totalPages = parseInt(totalPages);
+            let paginationHtml = '';
+            
+            if (totalPages > 1) {
+                if (currentPage > 1) {
+                    paginationHtml += `<li class="page-item"><a class="page-link" href="#" data-page="${currentPage - 1}">&laquo;</a></li>`;
+                } else {
+                    paginationHtml += `<li class="page-item disabled"><a class="page-link" href="#">&laquo;</a></li>`;
+                }
+                
+                for (let i = 1; i <= totalPages; i++) {
+                    if (i === currentPage) {
+                        paginationHtml += `<li class="page-item active"><a class="page-link" href="#">${i}</a></li>`;
+                    } else {
+                        paginationHtml += `<li class="page-item"><a class="page-link" href="#" data-page="${i}">${i}</a></li>`;
+                    }
+                }
+                
+                if (currentPage < totalPages) {
+                    paginationHtml += `<li class="page-item"><a class="page-link" href="#" data-page="${currentPage + 1}">&raquo;</a></li>`;
+                } else {
+                    paginationHtml += `<li class="page-item disabled"><a class="page-link" href="#">&raquo;</a></li>`;
+                }
+            }
+            $('.custom-pagination ul').html(paginationHtml);
+        }
+
+        $(document).on('click', '.custom-pagination .page-link', function(e) {
+            e.preventDefault();
+            let page = $(this).data('page');
+            if (page) {
+                loadEventData(page);
+            }
+        });
 
         loadEventData();
 

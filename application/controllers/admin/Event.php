@@ -35,9 +35,13 @@ class Event extends CI_Controller
 
     public function get_event_list()
     {
-        $data['total_event'] = $this->event->getEvent()->num_rows();
+        $page = $this->input->get('page');
+        if (!$page) $page = 1;
         $data['limit'] = 10;
-        $data['offset'] = $data['total_event'] > $data['limit'] ? ($data['total_event'] - $data['limit']) : "";
+        $data['total_event'] = $this->event->getEvent()->num_rows();
+        $data['total_pages'] = ceil($data['total_event'] / $data['limit']);
+        $data['current_page'] = $page;
+        $data['offset'] = ($page - 1) * $data['limit'];
         $data['event_list'] = $this->event->getEvent(null, $data['limit'], $data['offset'])->result();
         // $data['last_query'] = $this->db->last_query();
         $response = [

@@ -47,5 +47,6 @@ class Event_model extends CI_Model
     {
         $this->db->where('id', $id);
         $this->db->delete('events');
+        return $this->db->affected_rows();
     }
 }

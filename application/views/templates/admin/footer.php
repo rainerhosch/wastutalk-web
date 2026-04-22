@@ -13,15 +13,18 @@
         position: relative;
         z-index: 10;
     }
+
     .app-footer a {
         color: #4f8cff;
         font-weight: 500;
         transition: color 0.2s;
     }
+
     .app-footer a:hover {
         color: #38c6d9;
         text-decoration: underline;
     }
+
     .app-footer .footer-right {
         font-size: 1.05rem;
         color: #7b8a99;
@@ -30,12 +33,14 @@
         align-items: center;
         gap: 0.5rem;
     }
+
     .app-footer .footer-copyright {
         display: flex;
         align-items: center;
         gap: 0.5rem;
         font-size: 1.05rem;
     }
+
     @media (max-width: 768px) {
         .app-footer {
             flex-direction: column;
@@ -43,6 +48,7 @@
             padding: 1rem;
             gap: 0.5rem;
         }
+
         .app-footer .footer-right,
         .app-footer .footer-copyright {
             justify-content: center;
