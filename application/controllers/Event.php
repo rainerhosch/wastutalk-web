@@ -23,17 +23,45 @@ class Event extends CI_Controller
     }
     public function index()
     {
-
         $data['title'] = 'WastuTalk';
         $data['page'] = 'Daftar Event';
         $data['content'] = 'event/list';
-        $limit = 20;
-        $data_latest_event = $this->event->getEvent(null, $limit, "")->result();
+        
+        $limit = 6;
+        $page = $this->input->get('page');
+        $page = ($page && is_numeric($page) && $page > 0) ? intval($page) : 1;
+        $offset = ($page - 1) * $limit;
+        
+        $total_events = $this->event->getEvent(null)->num_rows();
+        $total_pages = ceil($total_events / $limit);
+        
+        $data_latest_event = $this->event->getEvent(null, $limit, $offset)->result();
 		$data['event_latest'] = array();
         foreach ($data_latest_event as $latest_event) {
             $latest_event->participant_count = $this->event->getParticipantEvent(array('id_event' => $latest_event->id))->num_rows();
             array_push($data['event_latest'], $latest_event);
         }
+        
+        $data['current_page'] = $page;
+        $data['total_pages'] = $total_pages;
+        
+        // Fetch statistic widgets data
+        $data['total_event'] = $total_events;
+        $data['total_participant'] = $this->event->getParticipantEvent(null)->num_rows();
+        $data['total_speaker'] = $this->event->getSpeaker(null)->num_rows();
+        
+        // Fetch chart data: latest 7 events with participant counts (in chronological order)
+        $chart_events = $this->event->getEvent(null, 7, 0)->result();
+        $chart_data = array();
+        foreach (array_reverse($chart_events) as $ev) {
+            $count = $this->event->getParticipantEvent(array('id_event' => $ev->id))->num_rows();
+            $chart_data[] = array(
+                'label' => strlen($ev->tema_event) > 20 ? substr($ev->tema_event, 0, 18) . '..' : $ev->tema_event,
+                'value' => $count
+            );
+        }
+        $data['chart_data'] = $chart_data;
+        
         $this->load->view('layout', $data);
     }
     public function detail()
