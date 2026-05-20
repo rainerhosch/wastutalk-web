@@ -1,0 +1,410 @@
+<style>
+    /* Modal Content/Box */
+    .modal-content2 {
+        text-align: center;
+        background-color: #fefefe;
+        margin: 5% auto 15% auto;
+        border: 1px solid #888;
+        width: 80%;
+    }
+
+    /* Style the horizontal ruler */
+    hr {
+        border: 1px solid #f1f1f1;
+        margin-bottom: 25px;
+    }
+
+    .modal-notify .modal-header {
+        border-radius: 3px 3px 0 0;
+    }
+
+    .modal-notify .modal-content {
+        border-radius: 3px;
+    }
+</style>
+<style>
+    /* Switch Component */
+    .switch {
+        position: relative;
+        display: inline-block;
+        width: 46px;
+        height: 24px;
+        vertical-align: middle;
+    }
+
+    .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+
+    .switch span {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        transition: 0.4s;
+        border-radius: 24px;
+    }
+
+    .switch span:before {
+        position: absolute;
+        content: "";
+        height: 18px;
+        width: 18px;
+        left: 3px;
+        bottom: 3px;
+        background-color: white;
+        transition: 0.4s;
+        border-radius: 50%;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    }
+
+    .switch-primary input:checked+span {
+        background-color: #88b0db;
+    }
+
+    .switch input:checked+span {
+        background-color: #4caf50;
+    }
+
+    .switch input:focus+span {
+        box-shadow: 0 0 1px #88b0db;
+    }
+
+    .switch input:checked+span:before {
+        transform: translateX(22px);
+    }
+
+    .switch-primary span {
+        background-color: #ccc;
+    }
+
+    .switch-primary input:checked+span {
+        background-color: #88b0db;
+    }
+</style>
+<style>
+    /* Custom Modern & Clean Styles for Submenu Management */
+    .custom-card {
+        background: #fff;
+        border-radius: 18px;
+        box-shadow: 0 4px 24px rgba(44, 62, 80, 0.08);
+        border: none;
+        margin-bottom: 2rem;
+        transition: box-shadow 0.2s;
+    }
+
+    .custom-card:hover {
+        box-shadow: 0 8px 32px rgba(44, 62, 80, 0.14);
+    }
+
+    .custom-card-header {
+        background: linear-gradient(90deg, #4f8cff 0%, #38c6d9 100%);
+        border-radius: 18px 18px 0 0;
+        padding: 1.5rem 2rem 1rem 2rem;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .custom-card-title {
+        font-size: 1.5rem;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        margin: 0;
+    }
+
+    .custom-btn-add {
+        background: #4f8cff;
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        padding: 0.5rem 1.5rem;
+        font-weight: 500;
+        font-size: 1rem;
+        transition: background 0.2s;
+    }
+
+    .custom-btn-add:hover {
+        background: #08464f;
+        color: #fff;
+    }
+
+    .custom-btn-edit {
+        background: #ffba4f;
+        color: #000;
+        border: none;
+        border-radius: 8px;
+        font-weight: 500;
+        font-size: 1rem;
+        transition: background 0.2s;
+    }
+
+    .custom-btn-edit:hover {
+        background: #ffe5bd;
+        color: #fff;
+    }
+
+    .custom-btn-delete {
+        background: #eb5c5c;
+        color: #000;
+        border: none;
+        border-radius: 8px;
+        font-weight: 500;
+        font-size: 1rem;
+        transition: background 0.2s;
+    }
+
+    .custom-btn-delete:hover {
+        background: #ffbfbf;
+        color: #fff;
+    }
+
+    .custom-table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0;
+        background: #f9fbfd;
+        border-radius: 0 0 18px 18px;
+        overflow: hidden;
+    }
+
+    .custom-table th,
+    .custom-table td {
+        padding: 1rem 0.75rem;
+        text-align: center;
+        vertical-align: middle;
+    }
+
+    .custom-table thead th {
+        background: #f1f5fa;
+        color: #4f8cff;
+        font-weight: 600;
+        border-bottom: 2px solid #e3e8ee;
+    }
+
+    .custom-table tbody tr {
+        transition: background 0.15s;
+    }
+
+    .custom-table tbody tr:hover {
+        background: #eaf6ff;
+    }
+
+    .custom-table td {
+        color: #34495e;
+        font-size: 1rem;
+    }
+
+    .custom-pagination {
+        display: flex;
+        justify-content: flex-end;
+        padding: 1rem 2rem;
+        background: transparent;
+    }
+
+    .custom-pagination .page-item .page-link {
+        color: #4f8cff;
+        border: none;
+        background: transparent;
+        font-weight: 500;
+        border-radius: 6px;
+        margin: 0 2px;
+        transition: background 0.2s, color 0.2s;
+    }
+
+    .custom-pagination .page-item.active .page-link,
+    .custom-pagination .page-item .page-link:hover {
+        background: #4f8cff;
+        color: #fff;
+    }
+
+    @media (max-width: 768px) {
+
+        .custom-card-header,
+        .custom-pagination {
+            padding: 1rem;
+        }
+
+        .custom-table th,
+        .custom-table td {
+            padding: 0.5rem 0.25rem;
+            font-size: 0.95rem;
+        }
+    }
+</style>
+<!-- Event Management Page -->
+    <div class="container-fluid py-4">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="custom-card mb-4">
+                    <div class="custom-card-header d-flex justify-content-between align-items-center">
+                        <h3 class="custom-card-title"><?= $page; ?></h3>
+                    </div>
+                    <div class="card-body p-0 table-responsive">
+                        <table class="table table-striped custom-table" id="event-table">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">#</th>
+                                    <th class="text-center">Nama Event</th>
+                                    <th class="text-center">Tanggal</th>
+                                    <th class="text-center">Jam</th>
+                                    <th class="text-center">Lokasi</th>
+                                    <th class="text-center">Pemateri</th>
+                                    <th class="text-center">Jumlah Peserta</th>
+                                    <th class="text-center">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody id="event_tbody">
+                                <!-- Data event akan dimuat via AJAX -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="custom-pagination">
+                        <ul class="pagination pagination-sm m-0 float-end">
+                            <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
+                            <li class="page-item"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script>
+    $(document).ready(function () {
+        function loadEventData(page = 1) {
+            $.ajax({
+                type: "GET",
+                url: "<?= base_url('admin/Event/get_event_list') ?>",
+                data: { page: page },
+                dataType: "json",
+                success: function (response) {
+                    let html = '';
+                    if (response.status && response.data.event_list.length > 0) {
+                        let offset = response.data.offset;
+                        $.each(response.data.event_list, function (i, event) {
+                            html += `<tr>
+                            <td class="text-center">${offset + i + 1}</td>
+                            <td class="text-center">${event.title}</td>
+                            <td class="text-center">${event.sesi_date}</td>
+                            <td class="text-center" style="font-size: 14px;">
+                            Start: ${event.start_time}<br>
+                            End: ${event.end_time}</td>
+                            <td class="text-center">${event.location}</td>
+                            <td class="text-center">${event.speaker}</td>
+                            <td class="text-center">${event.participant_count}</td>
+                            <td class="text-center">
+                                <a href="<?= base_url('admin/event/export_participants'); ?>?id_event=${event.id}" class="btn btn-sm btn-success text-white" title="Export Excel">Export <i class="bi bi-file-earmark-excel"></i></a>
+                            </td>
+                        </tr>`;
+                        });
+                        renderPagination(response.data.current_page, response.data.total_pages);
+                    } else {
+                        html = `<tr><td colspan="7" class="text-center">Belum ada data event.</td></tr>`;
+                        $('.custom-pagination ul').html('');
+                    }
+                    $('#event_tbody').html(html);
+                }
+            });
+        }
+
+        function renderPagination(currentPage, totalPages) {
+            currentPage = parseInt(currentPage);
+            totalPages = parseInt(totalPages);
+            let paginationHtml = '';
+            
+            if (totalPages > 1) {
+                if (currentPage > 1) {
+                    paginationHtml += `<li class="page-item"><a class="page-link" href="#" data-page="${currentPage - 1}">&laquo;</a></li>`;
+                } else {
+                    paginationHtml += `<li class="page-item disabled"><a class="page-link" href="#">&laquo;</a></li>`;
+                }
+                
+                for (let i = 1; i <= totalPages; i++) {
+                    if (i === currentPage) {
+                        paginationHtml += `<li class="page-item active"><a class="page-link" href="#">${i}</a></li>`;
+                    } else {
+                        paginationHtml += `<li class="page-item"><a class="page-link" href="#" data-page="${i}">${i}</a></li>`;
+                    }
+                }
+                
+                if (currentPage < totalPages) {
+                    paginationHtml += `<li class="page-item"><a class="page-link" href="#" data-page="${currentPage + 1}">&raquo;</a></li>`;
+                } else {
+                    paginationHtml += `<li class="page-item disabled"><a class="page-link" href="#">&raquo;</a></li>`;
+                }
+            }
+            $('.custom-pagination ul').html(paginationHtml);
+        }
+
+        $(document).on('click', '.custom-pagination .page-link', function(e) {
+            e.preventDefault();
+            let page = $(this).data('page');
+            if (page) {
+                loadEventData(page);
+            }
+        });
+
+        loadEventData();
+    });
+    // Inisialisasi flatpickr pada elemen yang sudah ada dan yang akan dirender dinamis
+    function initializeFlatpickr() {
+        if (typeof flatpickr !== "undefined") {
+            // Date picker untuk tanggal
+            $("[id$='_sesi_date']").each(function () {
+                if (!this._flatpickr) {
+                    $(this).flatpickr({
+                        // dateFormat: "mm-dd-YYYY",
+                        allowInput: true,
+                        // locale: "id"
+                    });
+                }
+            });
+
+            // Time picker untuk jam mulai
+            $("[id$='_start_time']").each(function () {
+                if (!this._flatpickr) {
+                    $(this).flatpickr({
+                        enableTime: true,
+                        noCalendar: true,
+                        dateFormat: "H:i",
+                        time_24hr: true,
+                        allowInput: true
+                    });
+                }
+            });
+
+            // Time picker untuk jam selesai
+            $("[id$='_end_time']").each(function () {
+                if (!this._flatpickr) {
+                    $(this).flatpickr({
+                        enableTime: true,
+                        noCalendar: true,
+                        dateFormat: "H:i",
+                        time_24hr: true,
+                        allowInput: true
+                    });
+                }
+            });
+        }
+    }
+
+    // Panggil saat dokumen siap
+    $(document).ready(function () {
+        initializeFlatpickr();
+    });
+
+    // Panggil juga setiap kali konten dinamis dirender (misal setelah ajax render modal/form)
+    $(document).on('shown.bs.modal', function () {
+        initializeFlatpickr();
+    });
+</script>
