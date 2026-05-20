@@ -382,6 +382,7 @@
                             <td class="text-center">${event.speaker}</td>
                             <td class="text-center">${event.participant_count}</td>
                             <td class="text-center">
+                                <a href="<?= base_url('admin/event/export_participants'); ?>?id_event=${event.id}" class="btn btn-sm btn-success text-white" title="Export Excel"><i class="bi bi-file-earmark-excel"></i></a>
                                 <button class="btn btn-sm btn-warning btn-edit-event" data-id="${event.id}"><i class="bi bi-pencil-square"></i></button>
                                 <button class="btn btn-sm btn-danger btn-delete-event" data-id="${event.id}"><i class="bi bi-trash"></i></button>
                             </td>

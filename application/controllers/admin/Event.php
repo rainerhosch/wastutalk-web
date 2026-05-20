@@ -63,6 +63,60 @@ class Event extends CI_Controller
         ];
         echo json_encode($response);
     }
+    public function export_participants()
+    {
+        $id_event = $this->input->get('id_event');
+        if (!$id_event) {
+            show_404();
+        }
+
+        $event = $this->event->getEventById($id_event)->row();
+        if (!$event) {
+            show_404();
+        }
+
+        $participants = $this->event->getParticipantEvent(array('id_event' => $id_event))->result();
+
+        $clean_title = preg_replace('/[^a-zA-Z0-9_]/', '_', $event->title);
+        $filename = "Laporan_Peserta_" . $clean_title . "_" . date('Ymd_His') . ".xls";
+
+        header("Content-Type: application/vnd.ms-excel");
+        header("Content-Disposition: attachment; filename=\"$filename\"");
+        header("Pragma: no-cache");
+        header("Expires: 0");
+
+        echo '<table border="1">';
+        echo '<thead>';
+        echo '<tr style="background-color: #4f8cff; color: #ffffff; font-weight: bold;">';
+        echo '<th>KODE PARTICIPANT</th>';
+        echo '<th>NAMA</th>';
+        echo '<th>EMAIL</th>';
+        echo '<th>NO HP</th>';
+        echo '<th>INSTITUSI</th>';
+        echo '<th>BIDANG</th>';
+        echo '</tr>';
+        echo '</thead>';
+        echo '<tbody>';
+
+        if (!empty($participants)) {
+            foreach ($participants as $p) {
+                echo '<tr>';
+                echo '<td>' . htmlspecialchars($p->kode_participant) . '</td>';
+                echo '<td>' . htmlspecialchars($p->nama) . '</td>';
+                echo '<td>' . htmlspecialchars($p->email) . '</td>';
+                echo '<td>' . htmlspecialchars($p->no_hp) . '</td>';
+                echo '<td>' . htmlspecialchars($p->institusi) . '</td>';
+                echo '<td>' . htmlspecialchars($p->program_studi) . '</td>';
+                echo '</tr>';
+            }
+        } else {
+            echo '<tr><td colspan="6" style="text-align: center;">Tidak ada data presensi untuk event ini.</td></tr>';
+        }
+
+        echo '</tbody>';
+        echo '</table>';
+        exit;
+    }
     public function add_event()
     {
         // config folder
