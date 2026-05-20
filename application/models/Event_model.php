@@ -27,6 +27,16 @@ class Event_model extends CI_Model
         }
         return $this->db->get();
     }
+
+    public function getParticipantEvent($data = null){
+        $this->db->select('*');
+        $this->db->from('presensi');
+        if($data != null){
+            $this->db->where($data);
+        }
+        return $this->db->get();
+    }
+
     public function addEvent($data)
     {
         $this->db->insert('events', $data);

@@ -22,7 +22,12 @@ class Beranda extends CI_Controller {
         $data['content'] = 'page/beranda';
         $limit = 3;
         
-		$data['event_latest'] = $this->event->getEvent(null, $limit, "")->result();
+        $data_latest_event = $this->event->getEvent(null, $limit, "")->result();
+		$data['event_latest'] = array();
+        foreach ($data_latest_event as $latest_event) {
+            $latest_event->participant_count = $this->event->getParticipantEvent(array('id_event' => $latest_event->id))->num_rows();
+            array_push($data['event_latest'], $latest_event);
+        }
 		$this->load->view('layout', $data);
 	}
 }

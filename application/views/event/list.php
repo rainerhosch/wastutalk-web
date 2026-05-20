@@ -65,6 +65,9 @@
 									</p>
 									<h5 class="card-title" style="font-size:14px;"><?php echo $post->tema_event; ?></h5>
 									<p class="card-text text-muted" style="font-size:12px;"><?= $post->speaker; ?></p>
+									<p class="card-text text-muted mb-3" style="font-size:12px;">
+										<i class="fa-solid fa-users text-primary me-1"></i><strong><?= $post->participant_count; ?></strong> Partisipan
+									</p>
 									<a href="<?php echo site_url('event/detail?id=' . $post->id); ?>" class="btn btn-primary">Lihat
 										Selengkapnya</a>
 								</div>
