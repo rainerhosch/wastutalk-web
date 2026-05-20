@@ -27,7 +27,7 @@ class Event extends CI_Controller
         $data['title'] = 'WastuTalk';
         $data['page'] = 'Daftar Event';
         $data['content'] = 'event/list';
-        $limit = 10;
+        $limit = 20;
         $data_latest_event = $this->event->getEvent(null, $limit, "")->result();
 		$data['event_latest'] = array();
         foreach ($data_latest_event as $latest_event) {
