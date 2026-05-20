@@ -137,7 +137,7 @@
 
             <!-- Field: NIM/NIDN -->
             <div class="form-card">
-                <label for="kode_participant" class="form-label-custom">NIM/NIDN <span
+                <label for="kode_participant" class="form-label-custom">NIM/NIDN/NO KTP <span
                         class="required-asterisk">*</span></label>
                 <input type="text" class="form-control form-control-custom" id="kode_participant"
                     name="kode_participant" placeholder="Jawaban Anda" required>
@@ -159,7 +159,7 @@
 
             <!-- Field: Nama Institusi -->
             <div class="form-card">
-                <label for="institusi" class="form-label-custom">Nama Institusi <span
+                <label for="institusi" class="form-label-custom">Nama Institusi/Perusahaan <span
                         class="required-asterisk">*</span></label>
                 <input type="text" class="form-control form-control-custom" id="institusi" name="institusi"
                     placeholder="Contoh: STT Wastukancana" required>
@@ -167,7 +167,7 @@
 
             <!-- Field: Program Studi -->
             <div class="form-card">
-                <label for="program_studi" class="form-label-custom">Program Studi <span
+                <label for="program_studi" class="form-label-custom">Program Studi/Bidang Keahlian <span
                         class="required-asterisk">*</span></label>
                 <input type="text" class="form-control form-control-custom" id="program_studi" name="program_studi"
                     placeholder="Contoh: Teknik Pangan" required>
