@@ -57,8 +57,8 @@
                 <!--begin::Small Box Widget 3-->
                 <div class="small-box text-bg-warning">
                     <div class="inner">
-                        <h3>70</h3>
-                        <p>Partisipan</p>
+                        <h3><?= $total_participant ?></h3>
+                        <p>Total Partisipan</p>
                     </div>
                     <svg class="small-box-icon" fill="currentColor" viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -78,7 +78,7 @@
                 <!--begin::Small Box Widget 4-->
                 <div class="small-box text-bg-danger">
                     <div class="inner">
-                        <h3>8</h3>
+                        <h3><?= $total_speaker ?></h3>
                         <p>Total Speaker</p>
                     </div>
                     <svg class="small-box-icon" fill="currentColor" viewBox="0 0 24 24"

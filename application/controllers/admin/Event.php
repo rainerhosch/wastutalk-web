@@ -43,6 +43,9 @@ class Event extends CI_Controller
         $data['current_page'] = $page;
         $data['offset'] = ($page - 1) * $data['limit'];
         $data['event_list'] = $this->event->getEvent(null, $data['limit'], $data['offset'])->result();
+        foreach ($data['event_list'] as $list_event) {
+            $list_event->participant_count = $this->event->getParticipantEvent(array('id_event' => $list_event->id))->num_rows();
+        }
         // $data['last_query'] = $this->db->last_query();
         $response = [
             'status' => true,

@@ -42,6 +42,8 @@ class Dashboard extends CI_Controller
             // die;
             $offset = ($offset - $limit);
             $data['total_event'] = $this->event->getEvent()->num_rows();
+            $data['total_participant'] = $this->event->getParticipantEvent(null)->num_rows();
+            $data['total_speaker'] =  $this->event->getSpeaker(null)->num_rows();
             $this->load->view('admin_layout', $data);
         }
 }

@@ -260,6 +260,7 @@
                                     <th class="text-center">Jam</th>
                                     <th class="text-center">Lokasi</th>
                                     <th class="text-center">Pemateri</th>
+                                    <th class="text-center">Jumlah Peserta</th>
                                     <th class="text-center">Aksi</th>
                                 </tr>
                             </thead>
@@ -379,6 +380,7 @@
                             End: ${event.end_time}</td>
                             <td class="text-center">${event.location}</td>
                             <td class="text-center">${event.speaker}</td>
+                            <td class="text-center">${event.participant_count}</td>
                             <td class="text-center">
                                 <button class="btn btn-sm btn-warning btn-edit-event" data-id="${event.id}"><i class="bi bi-pencil-square"></i></button>
                                 <button class="btn btn-sm btn-danger btn-delete-event" data-id="${event.id}"><i class="bi bi-trash"></i></button>

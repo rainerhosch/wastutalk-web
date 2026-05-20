@@ -34,6 +34,17 @@ class Event_model extends CI_Model
         if($data != null){
             $this->db->where($data);
         }
+        $this->db->group_by('kode_participant');
+        return $this->db->get();
+    }
+
+    public function getSpeaker($data = null){
+        $this->db->select('*');
+        $this->db->from('events');
+        if($data != null){
+            $this->db->where($data);
+        }
+        $this->db->group_by('speaker');
         return $this->db->get();
     }
 
